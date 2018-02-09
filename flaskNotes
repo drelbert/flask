@@ -1,0 +1,78 @@
+Flask Notes
+
+routing=
+route () decorator
+binds function to URL
+
+
+basic examples without multiple rules
+@app.route('/')
+def index():
+  return 'Index Page'
+
+@app.route('/projectOfficers')
+def projectOfficers():
+  return 'Project Officers'
+
+
+var rules=
+to add variable parts to a URL mark with special sections
+<var_name>
+this is passed to a keyword argument in the function
+
+example
+@app.route('/projectOfficers/<bureau_list')
+def projectOfficers(bureau_list):
+  #show the list of po's by bureau
+  return 'PO %s' %bureau_list
+
+unique URL's/Redirecting Behavior
+based on werkzeug's routing module
+
+two rules
+@app.route('/projectOfficers/')
+def projectOfficers():
+  return 'Project Officers Page'
+
+the recognized URL for projectOfficers has a trailing slash
+thus it is similar to a folder on a filesystem
+accessing it w out causes Flask to redirect this URL with the trailing slash
+
+@app.route('projectOfficer')
+def projectOfficer():
+  return 'PO Info Page'
+
+here the url is defined w out a trailing slash in the URL similar to the pathname on a file on UNIX and accessing the the URL w a trailing slash will produce a 404
+
+Jinja Templates
+template contains variables and/or expressions which are replaced with values at rendering
+and tags that control which logic of the template
+
+the default delimiters
+{#...#} comments
+
+{%...%} for statements
+a bite of statements
+allow for changing of flow
+using control flow statements
+if
+for
+while
+
+if statement
+used to check a condition
+if the condition is true, run a block of statements
+else process another block called the else-block
+
+example
+set var number to 23
+take users guess as input() function
+again a function is just reusable pieces of programs
+
+
+
+{{...}} for expressions to print the template output
+a bite on expressions
+simply 2 + 3
+two components are operator (functionality that do something and represented by symbols like + or special keywords)
+and operand are the data that get operated on ie 2 and 3
